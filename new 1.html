@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Star Wars Quotes</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <style type="text/css">
+    .roundedImage{
+        overflow:hidden;
+        -webkit-border-radius:50%;
+        -moz-border-radius:50%;
+        border-radius:50%;
+        width:240px;
+        height:240px;
+        float:left;
+    }
+    h3 {
+      border-top: 5em;
+    }
+    hr {
+      color:black ;
+    }
+  </style>
+
+  <div id = "container">
+    
+  </div>
+
+  <div id = "container2">
+  </div>
+
+    <script type="text/javascript" src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script type="text/babel">
+
+      var RandomQuote = React.createClass({
+        getInitialState: function () {
+          return { quote : '' , author: ''};
+        },
+
+        randomNumber: function(){
+            return Math.round(Math.random()*10);
+        },
+
+        handleClick: function () {
+          var rand = this.randomNumber();
+          this.setState({
+            quote: quotes[rand].quote,
+            author: quotes[rand].author,
+          });
+        },
+        render: function () {
+          return (
+            <div>
+            <button onClick={this.handleClick}>
+              Click here to get a random quote !
+            </button>
+            <h3>{this.state.quote} {this.state.author}</h3>
+            </div>
+          );
+        }
+      });
+      ReactDOM.render(
+        <RandomQuote />,
+        document.getElementById('container')
+      );
+
+      var QuoteCharacter = React.createClass({
+        getInitialState: function(){
+          return {quote:'', author:''};
+        },
+
+        LeiaClick: function() {
+          this.setState({
+            quote: quotes[4].quote,
+            author: quotes[4].author,
+          });
+        },
+
+        ObiwanClick: function() {
+          this.setState({
+            quote: quotes[8].quote,
+            author: quotes[8].author,
+          });
+        },
+
+        PalpatineClick: function() {
+          this.setState({
+            quote: quotes[1].quote,
+            author: quotes[1].author,
+          });
+        },
+
+        DookuClick: function() {
+          this.setState({
+            quote: quotes[2].quote,
+            author: quotes[2].author,
+          });
+        },
+
+        QuigonClick: function() {
+          this.setState({
+            quote: quotes[6].quote,
+            author: quotes[6].author,
+          });
+        },
+
+        randomDarth: function(){
+            var number = Math.round(Math.random());
+            if(number == 0){
+              return 3;
+            }
+            else {
+              return 10;
+            }
+        },
+
+        DarthClick: function() {
+          var rand = this.randomDarth();
+          this.setState({
+            quote: quotes[rand].quote,
+            author: quotes[rand].author,
+          });
+        },
+
+        randomYoda: function(){
+            var number = Math.round(Math.random()*3);
+            if(number == 0){
+              return ;
+            }
+            else if(number == 1){
+              return 5;
+            }
+            else if(number == 2){
+              return 7;
+            }
+            else if(number == 3){
+              return 9;
+            }
+        },
+
+        YodaClick: function() {
+          var rand = this.randomYoda();
+          this.setState({
+            quote: quotes[rand].quote,
+            author: quotes[rand].author,
+          });
+        },
+
+        render: function() {
+          return (
+            <div>
+              <hr/>
+              <h3>{this.state.quote} {this.state.author}</h3>
+              <div className="roundedImage" onClick={this.LeiaClick}>
+                <img src="http://static.anakinworld.com/uploads/entries/square_large/personnage-leia-organa-solo.jpg"/>
+              </div>
+              <div className="roundedImage" onClick={this.ObiwanClick}>
+                <img src="https://pbs.twimg.com/profile_images/714422393683501056/J3UVIces.jpg"/>
+              </div>
+              <div className="roundedImage" onClick={this.PalpatineClick}>
+                <img src="https://pbs.twimg.com/profile_images/671866183776387075/zjVE2d0Y.jpg"/>
+              </div>
+              <div className="roundedImage" onClick={this.DookuClick}>
+                <img src="https://pbs.twimg.com/profile_images/649563581738934272/HSMMCYoR.jpg"/>
+              </div>
+              <div className="roundedImage" onClick={this.QuigonClick}>
+                <img src="https://pbs.twimg.com/profile_images/698121911964987392/peVYTPd0_400x400.png"/>
+              </div>
+              <div className="roundedImage" onClick={this.DarthClick}>
+                <img src="https://pbs.twimg.com/profile_images/681881741506646016/XxhTLgHZ.jpg"/>
+              </div>
+              <div className="roundedImage" onClick={this.YodaClick}>
+                <img src="https://pbs.twimg.com/profile_images/650379772854300672/Ps1bgmSS.png"/>
+              </div>
+                
+            </div>
+          );
+        }
+
+      });
+
+      ReactDOM.render(
+        <QuoteCharacter />,
+        document.getElementById('container2')
+      );
+
+    </script>
+</body>
+</html>
